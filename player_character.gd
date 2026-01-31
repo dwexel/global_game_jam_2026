@@ -24,8 +24,11 @@ func _physics_process(delta):
 	
 	velocity = direction * speed
 
+	# the character collides for one frame.
 	move_and_slide()
 	check_slide_collisions()
+	
+	
 
 
 

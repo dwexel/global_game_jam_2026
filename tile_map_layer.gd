@@ -18,6 +18,9 @@ func open_door(map_coords: Vector2i):
 	# back to the door tile
 	set_cell(map_coords, 0, Vector2i(12, 5))
 
+func do_pickup(map_coords: Vector2i):
+	set_cell(map_coords, 0, Vector2i(12, 3))
+	
 
 func is_pickup(atlas_coords: Vector2i):
 	return false
