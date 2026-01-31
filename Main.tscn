@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://cqow47bch5ocs"]
 
 [ext_resource type="PackedScene" uid="uid://1vk535utuv8g" path="res://player_character.tscn" id="1_glv2v"]
-[ext_resource type="Script" path="res://tile_map_layer.gd" id="2_r0du0"]
+[ext_resource type="Script" uid="uid://djkq53xtgcjym" path="res://tile_map_layer.gd" id="2_r0du0"]
 [ext_resource type="Texture2D" uid="uid://db4u33je5t0y4" path="res://assets/tileset.png" id="2_uu6xs"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_r0du0"]
