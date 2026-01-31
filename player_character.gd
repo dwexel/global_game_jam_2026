@@ -4,23 +4,23 @@ extends CharacterBody2D
 # Movement speed in pixels per second.
 @export var speed := 50
 
+# in order to compare w/ current input
+var last_direction
 
 
 func _physics_process(delta):
-	#const SPEED = 600.0
-	
 	var direction = Input.get_vector("left", "right", "up", "down")
 	
-	#var direction = Vector2.ZERO
-	#if Input.is_action_pressed("left"):
-		#direction.x = -1
-	#elif Input.is_action_pressed("right"):
-		#direction.x = 1
-	#elif Input.is_action_pressed("up"):
-		#direction.y = -1
-	#elif Input.is_action_pressed("down"):
-		#direction.y = 1
-	#
+	if direction.x == 0:
+		last_direction = direction
+	elif direction.y == 0:
+		last_direction = direction
+	else:
+		# hmm
+		if last_direction.x == 0:
+			direction.y = 0
+		elif last_direction.y == 0:
+			direction.x = 0
 	
 	velocity = direction * speed
 
@@ -35,19 +35,35 @@ func check_slide_collisions():
 		var collision = get_slide_collision(i)
 		var collider = collision.get_collider()
 		
+		# rename
 		if collider is Level:
 			var _global_position = collision.get_position()
 			var _normal = collision.get_normal()
 			
+			# because jank
 			var _tile_position = collider.to_local(_global_position - _normal)
 			
-			
+			# tile info
 			var map_coords = collider.local_to_map(_tile_position)
-			var _tile_data = collider.get_cell_tile_data(map_coords)
+			var tile_data = collider.get_cell_tile_data(map_coords)
 			var atlas_coords = collider.get_cell_atlas_coords(map_coords)
 			
+			# check surroundings
+			#print(map_coords, atlas_coords)
 			if collider.is_door(atlas_coords):
 				collider.open_door(map_coords)
+				return
+
+			
+			
+			for map_coord in collider.get_surrounding_cells(map_coords):
+				var atlas_coord = collider.get_cell_atlas_coords(map_coord)
+				#print(map_coord)
+				if collider.is_door(atlas_coord):
+					#pprint
+					collider.open_door(map_coord)
+					return
+			
 				
 			
 				
