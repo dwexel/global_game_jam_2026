@@ -154,8 +154,8 @@ position = Vector2(37, 38)
 collision_mask = 3
 
 [node name="Label" type="Label" parent="." unique_id=1050797892]
-offset_top = -10.0
+offset_top = 56.0
 offset_right = 136.0
-offset_bottom = 10.0
+offset_bottom = 76.0
 text = "this is a caption"
 label_settings = SubResource("LabelSettings_r0du0")
