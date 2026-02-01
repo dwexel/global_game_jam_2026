@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://bppcibjqhnm3u"]
+
+[ext_resource type="Texture2D" uid="uid://d57x70wj74ay" path="res://assets/paperOverlay.png" id="1_225fb"]
+
+[sub_resource type="Theme" id="Theme_p1iy4"]
+panel/icons/bg = ExtResource("1_225fb")
+
+[node name="Evidence" type="Node2D" unique_id=1132927752]
+
+[node name="Panel" type="Panel" parent="." unique_id=1430038592]
+offset_right = 40.0
+offset_bottom = 40.0
+theme = SubResource("Theme_p1iy4")
