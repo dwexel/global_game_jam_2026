@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://cgvxnltyi2dkn" path="res://guards.tscn" id="4_cm0pq"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_r0du0"]
-font_size = 4
 
 [node name="Main" type="Node2D" unique_id=1614393884]
 

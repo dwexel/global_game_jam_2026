@@ -26,10 +26,11 @@ window/size/viewport_height=1024
 window/stretch/mode="viewport"
 window/stretch/scale=8.0
 window/stretch/scale_mode="integer"
+"<<<<<<<HEAD[gui]theme/custom_font"="uid://duci2snd55gia"
 
 [gui]
 
-theme/custom_font="uid://duci2snd55gia"
+theme/custom_font="uid://kvx5566y0wok"
 
 [input]
 

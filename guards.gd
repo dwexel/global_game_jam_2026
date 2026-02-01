@@ -90,10 +90,10 @@ enum WALK {
 func play_walking_animation(cardinal_direction: int):
 	match cardinal_direction:
 		0: # left
-				animated_sprite_2d.set_frame_and_progress(IDLE.LEFT, 0)
+			animated_sprite_2d.set_frame_and_progress(IDLE.LEFT, 0)
 		1: # up
-				animated_sprite_2d.set_frame_and_progress(IDLE.UP, 0)
+			animated_sprite_2d.set_frame_and_progress(IDLE.UP, 0)
 		2: # right
-				animated_sprite_2d.set_frame_and_progress(IDLE.RIGHT, 0)
+			animated_sprite_2d.set_frame_and_progress(IDLE.RIGHT, 0)
 		3: # down
 			animated_sprite_2d.set_frame_and_progress(IDLE.RIGHT, 0)
