@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cgvxnltyi2dkn" path="res://guards.tscn" id="4_cm0pq"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_r0du0"]
-font_size = 8
+font_size = 4
 
 [node name="Main" type="Node2D" unique_id=1614393884]
 
@@ -32,6 +32,3 @@ label_settings = SubResource("LabelSettings_r0du0")
 
 [node name="Guards" parent="." unique_id=441229478 instance=ExtResource("4_cm0pq")]
 position = Vector2(95, 39)
-
-[node name="Guards2" parent="." unique_id=1064521921 instance=ExtResource("4_cm0pq")]
-position = Vector2(83, 30)
