@@ -32,3 +32,12 @@ label_settings = SubResource("LabelSettings_r0du0")
 
 [node name="Guards" parent="." unique_id=441229478 instance=ExtResource("4_cm0pq")]
 position = Vector2(95, 39)
+
+[node name="Guards2" parent="." unique_id=564133846 instance=ExtResource("4_cm0pq")]
+position = Vector2(121, 37)
+
+[node name="Guards3" parent="." unique_id=682735695 instance=ExtResource("4_cm0pq")]
+position = Vector2(38, 11)
+
+[node name="Guards4" parent="." unique_id=237918466 instance=ExtResource("4_cm0pq")]
+position = Vector2(95, 23)

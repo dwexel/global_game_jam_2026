@@ -12,6 +12,17 @@ const GUARD_SIGHT_RANGE = 32
 var _position_last_frame := Vector2()
 var _cardinal_direction = 0
 
+#@export_enum("g1", "g2", "g3", "g4") var guard_type: String
+
+func _draw() -> void:
+	select_guard()
+	
+func select_guard():
+	var animation_names := animated_sprite_2d.sprite_frames.get_animation_names()
+	var random_ani_name = animation_names[randi() % animation_names.size()]
+	print(random_ani_name)
+	animated_sprite_2d.play(random_ani_name)
+
 func _physics_process(delta: float) -> void:
 	var direction = pick_new_direction()
 	var facing_direction = get_facing_direction()
@@ -19,8 +30,7 @@ func _physics_process(delta: float) -> void:
 	
 	velocity = direction * SPEED * delta
 	move_and_slide()
-	
-	
+
 func pick_new_direction():
 	# track the player
 	var pc_pos = -1 * (guards.position - player_character.position)
@@ -29,10 +39,10 @@ func pick_new_direction():
 	line_2d.points = [Vector2(0,0), pc_direction]
 	
 	if pc_pos.length() < GUARD_SIGHT_RANGE:
-		print("player found")
+		#print("player found")
 		return pc_pos
 	else:
-		print("no player found")
+		#print("no player found")
 		return Vector2(0,0)
 
 func check_door():
@@ -78,7 +88,6 @@ enum WALK {
 }
 
 func play_walking_animation(cardinal_direction: int):
-	
 	match cardinal_direction:
 		0: # left
 				animated_sprite_2d.set_frame_and_progress(IDLE.LEFT, 0)
