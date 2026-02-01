@@ -11,7 +11,7 @@ script = ExtResource("1_3rwwn")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=70887940]
 sprite_frames = ExtResource("2_3rwwn")
-animation = &"g1"
+animation = &"g3"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=132798384]
 shape = SubResource("RectangleShape2D_525xt")

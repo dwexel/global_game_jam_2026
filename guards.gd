@@ -76,7 +76,7 @@ enum WALK {
 	DOWN = 7,
 	UP = 10,
 }
-	
+
 func play_walking_animation(cardinal_direction: int):
 	
 	match cardinal_direction:
