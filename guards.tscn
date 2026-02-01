@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://ivdsko5ky70t"]
+[gd_scene format=3 uid="uid://cgvxnltyi2dkn"]
 
 [ext_resource type="Script" uid="uid://cpea17dscos3w" path="res://guards.gd" id="1_3rwwn"]
 [ext_resource type="Texture2D" uid="uid://db4u33je5t0y4" path="res://assets/tileset.png" id="1_21a87"]
