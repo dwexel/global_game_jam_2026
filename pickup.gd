@@ -3,8 +3,11 @@ extends Node2D
 # note: hardcoded scene path
 @onready var player = $"/root/Main/PlayerCharacter"
 @onready var level: Level = $"/root/Main/Level"
+const PAPER_EVIDENCE = preload("uid://bppcibjqhnm3u")
+const COMPUTER_EVIDENCE = preload("uid://kxn78y86fsnr")
 
 @onready var area2d: Area2D = $Area2D
+signal evidence_picked_up;
 
 var timer: SceneTreeTimer
 
@@ -28,11 +31,8 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 		timer = null
 
 func _on_timeout():
-	print("DONE!")
-	
+	evidence_picked_up.emit()
 	# our maps are superimposed
 	var map_coords = level.local_to_map(position)
-	
 	level.do_pickup(map_coords)
-	
 	self.queue_free()

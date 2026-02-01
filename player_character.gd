@@ -32,7 +32,6 @@ func _physics_process(delta):
 	check_slide_collisions()
 
 
-
 func check_slide_collisions():
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
@@ -68,7 +67,6 @@ func check_slide_collisions():
 
 func emit_door():
 	player_sound.emit(position)
-	
 	pass
 
 

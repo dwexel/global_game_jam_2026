@@ -1,5 +1,6 @@
 [gd_scene format=4 uid="uid://cqow47bch5ocs"]
 
+[ext_resource type="Script" uid="uid://crtdv5djku0ij" path="res://main.gd" id="1_03owx"]
 [ext_resource type="PackedScene" uid="uid://dgd8kv4qw5eyu" path="res://pickup.tscn" id="1_fos0i"]
 [ext_resource type="PackedScene" uid="uid://1vk535utuv8g" path="res://player_character.tscn" id="1_glv2v"]
 [ext_resource type="TileSet" uid="uid://ds87wjdr3plwd" path="res://assets/tile_set.tres" id="1_r0du0"]
@@ -18,6 +19,7 @@ stream_0 = ExtResource("7_trn2v")
 stream_1 = ExtResource("8_03owx")
 
 [node name="Main" type="Node2D" unique_id=1614393884]
+script = ExtResource("1_03owx")
 
 [node name="Pickup" parent="." unique_id=1854647972 instance=ExtResource("1_fos0i")]
 position = Vector2(60, 22)
@@ -42,13 +44,6 @@ offset_bottom = 78.0
 text = "this is a caption"
 label_settings = SubResource("LabelSettings_r0du0")
 
-[node name="Guards" parent="." unique_id=441229478 node_paths=PackedStringArray("waypoints") instance=ExtResource("4_cm0pq")]
-position = Vector2(103, 25)
-waypoints = [NodePath("../Waypoint"), NodePath("../Waypoint2"), NodePath("../Waypoint3")]
-
-[node name="Guards2" parent="." unique_id=1064521921 instance=ExtResource("4_cm0pq")]
-position = Vector2(83, 30)
-
 [node name="Waypoint" parent="." unique_id=1550070532 instance=ExtResource("5_fos0i")]
 position = Vector2(88, 8)
 
@@ -62,5 +57,13 @@ position = Vector2(16, 64)
 stream = SubResource("AudioStreamPlaylist_wkp8b")
 autoplay = true
 
+[node name="Guards" parent="." unique_id=441229478 node_paths=PackedStringArray("waypoints") instance=ExtResource("4_cm0pq")]
+position = Vector2(103, 25)
+waypoints = [NodePath("../Waypoint"), NodePath("../Waypoint2"), NodePath("../Waypoint3")]
+
+[node name="Guards2" parent="." unique_id=1064521921 instance=ExtResource("4_cm0pq")]
+position = Vector2(83, 30)
+
+[connection signal="evidence_picked_up" from="Pickup" to="." method="_on_pickup_evidence_picked_up"]
 [connection signal="player_sound" from="PlayerCharacter" to="Guards" method="_on_player_character_player_sound"]
 [connection signal="player_sound" from="PlayerCharacter" to="Guards2" method="_on_player_character_player_sound"]
