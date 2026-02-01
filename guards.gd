@@ -1,17 +1,19 @@
 extends CharacterBody2D
 
-const SPEED = 60
+const SPEED = 0.75
 const GUARD_SIGHT_RANGE = 32
 
 @onready var guards: CharacterBody2D = $"."
 @onready var player_check: RayCast2D = $player_check
 @onready var line_2d: Line2D = $player_check/Line2D
 @onready var player_character: CharacterBody2D = $"../PlayerCharacter"
+@onready var light_cone: Node2D = $LightPivot
 
 func _physics_process(delta: float) -> void:
 	var direction = pick_new_direction()
 	velocity = direction * SPEED
 	move_and_slide()
+	
 	
 func pick_new_direction():
 	# track the player
@@ -20,11 +22,19 @@ func pick_new_direction():
 	player_check.target_position = pc_pos
 	line_2d.points = [Vector2(0,0), pc_direction]
 	
+	# point light at the player
+	light_cone.look_at(player_character.global_position)
+	
+	if player_check.is_colliding():
+		if player_check.get_collider() != player_character:
+			return Vector2(0, 0)
+	
+	
 	if pc_pos.length() < GUARD_SIGHT_RANGE:
-		print("player found")
+		#print("player found")
 		return pc_pos
 	else:
-		print("no player found")
+		#print("no player found")
 		return Vector2(0,0)
 
 func check_door():
