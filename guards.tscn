@@ -1,8 +1,8 @@
-[gd_scene format=3 uid="uid://cg6lv7dy5x4ej"]
+[gd_scene format=3 uid="uid://j1dhkdrec1gi"]
 
-[ext_resource type="Script" path="res://guards.gd" id="1_3rwwn"]
+[ext_resource type="Script" uid="uid://d28fmejghb5wr" path="res://guards.gd" id="1_3rwwn"]
 [ext_resource type="Texture2D" uid="uid://db4u33je5t0y4" path="res://assets/tileset.png" id="1_21a87"]
-[ext_resource type="Texture2D" path="res://light_cone_texture_1.webp" id="3_gsvcv"]
+[ext_resource type="Texture2D" uid="uid://bxewks0puka62" path="res://light_cone_texture_1.webp" id="3_gsvcv"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3rwwn"]
 load_path = "res://.godot/imported/guards.png-3f9e90050a64a002a29bc96004aa8f59.ctex"
@@ -102,27 +102,12 @@ frame_progress = 0.41408554
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=132798384]
 shape = SubResource("RectangleShape2D_525xt")
 
-[node name="RayCastRight" type="RayCast2D" parent="." unique_id=266964892]
-target_position = Vector2(8, 0)
-hit_from_inside = true
-collide_with_bodies = false
-
-[node name="RayCastLeft" type="RayCast2D" parent="." unique_id=1880663798]
-target_position = Vector2(-8, 0)
-hit_from_inside = true
-collide_with_bodies = false
-
-[node name="RayCastUp" type="RayCast2D" parent="." unique_id=784761315]
-target_position = Vector2(0, -8)
-hit_from_inside = true
-collide_with_bodies = false
-
-[node name="RayCastDown" type="RayCast2D" parent="." unique_id=917559452]
-target_position = Vector2(0, 8)
-hit_from_inside = true
-collide_with_bodies = false
-
 [node name="player_check" type="RayCast2D" parent="." unique_id=327724726]
+target_position = Vector2(-48, 0)
+
+[node name="Line2D" type="Line2D" parent="player_check" unique_id=618867074]
+points = PackedVector2Array(-20, 0)
+default_color = Color(1, 1, 0, 0.11764706)
 
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=1472684548]
 position = Vector2(-32, -32)
