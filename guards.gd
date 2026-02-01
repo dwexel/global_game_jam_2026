@@ -116,33 +116,6 @@ func pick_new_direction() -> Vector2:
 		
 
 	
-func _draw() -> void:
-	select_guard()
-	
-func select_guard():
-	var animation_names := animated_sprite_2d.sprite_frames.get_animation_names()
-	var random_ani_name = animation_names[randi() % animation_names.size()]
-	print(random_ani_name)
-	animated_sprite_2d.play(random_ani_name)
-
-# deal with the path
-func pick_new_direction() -> Vector2:
-	if current_path == null:
-		#print("selecting new path...", self)
-		
-		var _dest = select_next_waypoint()
-		if _dest == null:
-			return Vector2.ZERO
-		
-		# takes pixel coordinates local to the level node
-		current_path = level.find_path(position, _dest.position)
-		current_path_i = 0
-		
-		assert(current_path != null)
-		assert(len(current_path) > 0)
-		
-
-	
 	var _direction: Vector2 = (current_path[current_path_i] - position)
 	
 	if _direction.length() < 2:
@@ -175,7 +148,13 @@ func get_guard_destination() -> Vector2:
 	
 
 func check_for_player(by_pointing_at: Vector2):
-	var pc_pos = -1 * (guards.position - by_pointing_at)
+	var pc_pos = (player_character.position - guards.position)
+	
+	var looking_dir = (by_pointing_at - guards.position)
+	
+	
+	#var pc_pos = -1 * (guards.position - by_pointing_at)
+	
 	player_check.target_position = pc_pos
 	
 	# visual only aspect
@@ -193,10 +172,6 @@ func check_for_player(by_pointing_at: Vector2):
 	
 	var player_pos = player_character.position - guards.position
 	
-	if player_check.is_colliding():
-		if player_check.get_collider() == player_character:
-			if player_pos.length() <= GUARD_SIGHT_RANGE:
-				return true
 	
 	if player_check.is_colliding():
 		if player_check.get_collider() == player_character:

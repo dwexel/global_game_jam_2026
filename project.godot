@@ -69,12 +69,10 @@ audio/channel_defaults={
 
 window/size/viewport_width=1024
 window/size/viewport_height=1024
-window/size/resizable=false
 window/stretch/mode="viewport"
 window/stretch/scale=8.0
 window/stretch/scale_mode="integer"
 "<<<<<<<HEAD[gui]theme/custom_font"="uid://duci2snd55gia"
-"<<<<<<<HEAD[editor]movie_writer/movie_file"="C:/Users/dexte/Desktop/movie.avi"
 
 [editor]
 
