@@ -1,0 +1,132 @@
+[gd_scene format=3 uid="uid://cg6lv7dy5x4ej"]
+
+[ext_resource type="Script" path="res://guards.gd" id="1_3rwwn"]
+[ext_resource type="Texture2D" uid="uid://db4u33je5t0y4" path="res://assets/tileset.png" id="1_21a87"]
+[ext_resource type="Texture2D" path="res://light_cone_texture_1.webp" id="3_gsvcv"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3rwwn"]
+load_path = "res://.godot/imported/guards.png-3f9e90050a64a002a29bc96004aa8f59.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kvivb"]
+atlas = SubResource("CompressedTexture2D_3rwwn")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_525xt"]
+atlas = SubResource("CompressedTexture2D_3rwwn")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gsvcv"]
+atlas = ExtResource("1_21a87")
+region = Rect2(40, 32, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_at8v6"]
+atlas = ExtResource("1_21a87")
+region = Rect2(48, 32, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u3nxm"]
+atlas = ExtResource("1_21a87")
+region = Rect2(56, 32, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yju2m"]
+atlas = ExtResource("1_21a87")
+region = Rect2(32, 40, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gff0w"]
+atlas = ExtResource("1_21a87")
+region = Rect2(40, 40, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kvivb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kvivb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_525xt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gsvcv")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_at8v6")
+}],
+"loop": true,
+"name": &"new_animation_1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u3nxm")
+}],
+"loop": true,
+"name": &"new_animation_2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yju2m")
+}],
+"loop": true,
+"name": &"new_animation_3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gff0w")
+}],
+"loop": true,
+"name": &"new_animation_4",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_525xt"]
+size = Vector2(8, 8)
+
+[node name="Guards" type="CharacterBody2D" unique_id=441229478]
+script = ExtResource("1_3rwwn")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=70887940]
+sprite_frames = SubResource("SpriteFrames_kvivb")
+frame_progress = 0.41408554
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=132798384]
+shape = SubResource("RectangleShape2D_525xt")
+
+[node name="RayCastRight" type="RayCast2D" parent="." unique_id=266964892]
+target_position = Vector2(8, 0)
+hit_from_inside = true
+collide_with_bodies = false
+
+[node name="RayCastLeft" type="RayCast2D" parent="." unique_id=1880663798]
+target_position = Vector2(-8, 0)
+hit_from_inside = true
+collide_with_bodies = false
+
+[node name="RayCastUp" type="RayCast2D" parent="." unique_id=784761315]
+target_position = Vector2(0, -8)
+hit_from_inside = true
+collide_with_bodies = false
+
+[node name="RayCastDown" type="RayCast2D" parent="." unique_id=917559452]
+target_position = Vector2(0, 8)
+hit_from_inside = true
+collide_with_bodies = false
+
+[node name="player_check" type="RayCast2D" parent="." unique_id=327724726]
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1472684548]
+position = Vector2(-32, -32)
+color = Color(1, 1, 0, 1)
+shadow_enabled = true
+texture = ExtResource("3_gsvcv")
+texture_scale = 0.5
