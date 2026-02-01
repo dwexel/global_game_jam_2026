@@ -3,14 +3,40 @@ extends Control
 @onready var evidence: Control = $"."
 @onready var label: Label = $PanelContainer/ScrollContainer/Label
 
+var documents_all = []
+
 func _ready() -> void:
 	# loads the actual content on instancing
-	var data = read_csv_file("res://assets/documents-library.csv")
-	label.text = data[0][0]
-	print("label.text ", label.text)
-	print("data ", data[0][0])
+	var files = list_files_in_directory("res://assets/Txt Files for Ryan/")
+	var full_text = ""
+	
+	for textx in files.pick_random():
+		for texty in textx:
+			full_text += texty
+		
+	label.text = full_text
 	evidence.position = Vector2(0,0)
 	evidence.size = Vector2(128, 128)
+
+func list_files_in_directory(path: String) -> Array:
+	# Use the static method for convenience
+	var files: PackedStringArray = DirAccess.get_files_at(path)
+	
+	if files.is_empty():
+		print("No files found or an error occurred when trying to access the path.")
+		return []
+
+	print("Files in directory: " + path)
+	for file_name in files:
+		# Construct the full path if needed, e.g., for loading the resource
+		var full_path = path.path_join(file_name) 
+		print(full_path)
+		var current_file = read_csv_file(full_path)
+		documents_all.append(current_file)
+		# To load a resource dynamically:
+		# var loaded_resource = ResourceLoader.load(full_path)
+	print("documents ", documents_all)
+	return documents_all
 
 func read_csv_file(file_path):
 	var file = FileAccess.open(file_path, FileAccess.READ)
