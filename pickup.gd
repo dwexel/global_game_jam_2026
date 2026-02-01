@@ -4,8 +4,8 @@ extends Node2D
 @onready var player = $"/root/Main/PlayerCharacter"
 @onready var level: Level = $"/root/Main/Level"
 
-const EVIDENCE_PAPER = preload("uid://kxn78y86fsnr")
-const EVIDENCE_COMPUTER = preload("uid://bppcibjqhnm3u")
+#const EVIDENCE_PAPER = preload("uid://kxn78y86fsnr")
+#const EVIDENCE_COMPUTER = preload("uid://bppcibjqhnm3u")
 
 @onready var area2d: Area2D = $Area2D
 signal evidence_picked_up;

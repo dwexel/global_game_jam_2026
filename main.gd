@@ -1,9 +1,9 @@
 extends Node2D
 
-@onready var PAPER_EVIDENCE = preload("uid://bppcibjqhnm3u")
+@onready var PAPER_EVIDENCE = preload("res://evidence-paper.tscn")
 @onready var pickup: Node2D = $Pickup
 @onready var main: Node2D = $"."
-const GUARDS = preload("uid://cgvxnltyi2dkn")
+#const GUARDS = preload("res://guards.gd")
 
 func _on_pickup_evidence_picked_up() -> void:
 	# pause the game
