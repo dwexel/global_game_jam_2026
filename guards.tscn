@@ -1,8 +1,8 @@
-[gd_scene format=3 uid="uid://cg6lv7dy5x4ej"]
+[gd_scene format=3 uid="uid://j1dhkdrec1gi"]
 
-[ext_resource type="Script" path="res://guards.gd" id="1_3rwwn"]
+[ext_resource type="Script" uid="uid://cpea17dscos3w" path="res://guards.gd" id="1_3rwwn"]
 [ext_resource type="Texture2D" uid="uid://db4u33je5t0y4" path="res://assets/tileset.png" id="1_21a87"]
-[ext_resource type="Texture2D" path="res://light_cone_texture_1.webp" id="3_gsvcv"]
+[ext_resource type="Texture2D" uid="uid://dp4f5p8557pm5" path="res://2d_lights_and_shadows_neutral_point_light.webp" id="3_gsvcv"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3rwwn"]
 load_path = "res://.godot/imported/guards.png-3f9e90050a64a002a29bc96004aa8f59.ctex"
