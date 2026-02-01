@@ -1,8 +1,8 @@
-[gd_scene format=3 uid="uid://j1dhkdrec1gi"]
+[gd_scene format=3 uid="uid://ivdsko5ky70t"]
 
-[ext_resource type="Script" uid="uid://d28fmejghb5wr" path="res://guards.gd" id="1_3rwwn"]
+[ext_resource type="Script" uid="uid://cpea17dscos3w" path="res://guards.gd" id="1_3rwwn"]
 [ext_resource type="Texture2D" uid="uid://db4u33je5t0y4" path="res://assets/tileset.png" id="1_21a87"]
-[ext_resource type="Texture2D" uid="uid://bxewks0puka62" path="res://light_cone_texture_1.webp" id="3_gsvcv"]
+[ext_resource type="Texture2D" uid="uid://dib035t2pvhlh" path="res://light_cone_texture_1.webp" id="3_gsvcv"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3rwwn"]
 load_path = "res://.godot/imported/guards.png-3f9e90050a64a002a29bc96004aa8f59.ctex"
@@ -102,16 +102,19 @@ frame_progress = 0.41408554
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=132798384]
 shape = SubResource("RectangleShape2D_525xt")
 
+[node name="LightPivot" type="Node2D" parent="." unique_id=206940066]
+
+[node name="PointLight2D" type="PointLight2D" parent="LightPivot" unique_id=1472684548]
+rotation = 2.3561945
+color = Color(1, 1, 0, 1)
+shadow_enabled = true
+texture = ExtResource("3_gsvcv")
+offset = Vector2(-32, -32)
+texture_scale = 0.5
+
 [node name="player_check" type="RayCast2D" parent="." unique_id=327724726]
 target_position = Vector2(-48, 0)
 
 [node name="Line2D" type="Line2D" parent="player_check" unique_id=618867074]
 points = PackedVector2Array(-20, 0)
 default_color = Color(1, 1, 0, 0.11764706)
-
-[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1472684548]
-position = Vector2(-32, -32)
-color = Color(1, 1, 0, 1)
-shadow_enabled = true
-texture = ExtResource("3_gsvcv")
-texture_scale = 0.5
