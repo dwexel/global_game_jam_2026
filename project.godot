@@ -80,6 +80,10 @@ window/stretch/scale_mode="integer"
 
 movie_writer/movie_file="C:/Users/dexte/Desktop/movie.avi"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/dialogic/plugin.cfg")
+
 [gui]
 
 theme/custom_font="uid://duci2snd55gia"

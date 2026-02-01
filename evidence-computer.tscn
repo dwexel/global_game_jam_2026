@@ -1,8 +1,8 @@
-[gd_scene format=3 uid="uid://bppcibjqhnm3u"]
+[gd_scene format=3 uid="uid://cah3wqig1nplh"]
 
-[ext_resource type="Script" uid="uid://rjd3ksbo03ch" path="res://evidence-paper.gd" id="1_kfaox"]
-[ext_resource type="Texture2D" uid="uid://bcgf5s1kmfbso" path="res://assets/computerOverlay.png" id="2_utkai"]
-[ext_resource type="Script" uid="uid://d0d0vmkjbqmpq" path="res://label.gd" id="3_g0kcb"]
+[ext_resource type="Script" path="res://evidence-paper.gd" id="1_kfaox"]
+[ext_resource type="Texture2D" path="res://assets/computerOverlay.png" id="2_utkai"]
+[ext_resource type="Script" path="res://label.gd" id="3_g0kcb"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_14cls"]
 texture = ExtResource("2_utkai")

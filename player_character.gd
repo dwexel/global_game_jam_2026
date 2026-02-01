@@ -9,6 +9,22 @@ var last_direction
 
 # cause something happened to alert them
 signal player_sound(at: Vector2)
+signal alert_guards(at, radius, mask_color)
+
+#enum Masks {
+	#GREEN,
+	#BLUE,
+	#RED
+#}
+
+# have the names of the animations in the sprite
+var masks = ["yellow", "white", "red", "green", "blue"]
+
+# for selection
+var current_mask: int = 0
+
+@onready var animated_sprite = $AnimatedSprite2D
+
 
 
 func _physics_process(delta):
@@ -30,6 +46,15 @@ func _physics_process(delta):
 	# the character collides for one frame.
 	move_and_slide()
 	check_slide_collisions()
+	
+	if Input.is_action_just_pressed("dialogic_default_action"):
+		current_mask = (current_mask + 1) % len(masks)
+		animated_sprite.play(masks[current_mask])
+		
+	
+	
+
+
 
 
 func check_slide_collisions():
@@ -52,22 +77,22 @@ func check_slide_collisions():
 			
 			if collider.is_door(atlas_coords):
 				collider.open_door(map_coords)
-				emit_door()
+				#emit_door()
 				return
 
 			for map_coord in collider.get_surrounding_cells(map_coords):
 				var atlas_coord = collider.get_cell_atlas_coords(map_coord)
 				if collider.is_door(atlas_coord):
 					collider.open_door(map_coord)
-					emit_door()
+					#emit_door()
 					return
-			
-				
-			
+
 
 func emit_door():
 	player_sound.emit(position)
-	pass
+
+func get_mask_color():
+	return masks[current_mask]
 
 
 
@@ -107,13 +132,7 @@ func set_bar_progress(progress):
 		bar2.show()
 	if progress > 0:
 		bar1.show()
-	
-		
-		
+
 
 func set_bar_hidden():
 	bar.hide()
-
-
-func _on_pickup(body: Node2D):
-	print("don't use")

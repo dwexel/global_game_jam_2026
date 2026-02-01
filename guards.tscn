@@ -1,11 +1,11 @@
-[gd_scene format=3 uid="uid://cgvxnltyi2dkn"]
+[gd_scene format=3 uid="uid://j1dhkdrec1gi"]
 
 [ext_resource type="Script" uid="uid://cpea17dscos3w" path="res://guards.gd" id="1_3rwwn"]
 [ext_resource type="Texture2D" uid="uid://cnpws2jhc1csa" path="res://assets/guard1.png" id="2_yju2m"]
 [ext_resource type="Texture2D" uid="uid://5xxek0qqo2oo" path="res://assets/guard2.png" id="3_gff0w"]
-[ext_resource type="Texture2D" uid="uid://dib035t2pvhlh" path="res://light_cone_texture_1.webp" id="3_gsvcv"]
 [ext_resource type="Texture2D" uid="uid://cl5vw26omakp7" path="res://assets/guard3.png" id="4_kvivb"]
 [ext_resource type="Texture2D" uid="uid://c212b65mydeae" path="res://assets/guard4.png" id="5_525xt"]
+[ext_resource type="Texture2D" uid="uid://bgqayjpfopuea" path="res://light_cone_texture_2.webp" id="6_yju2m"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lq6d1"]
 atlas = ExtResource("2_yju2m")
@@ -471,7 +471,7 @@ shape = SubResource("CircleShape2D_yju2m")
 rotation = 2.3561945
 color = Color(1, 1, 0, 1)
 shadow_enabled = true
-texture = ExtResource("3_gsvcv")
+texture = ExtResource("6_yju2m")
 offset = Vector2(-32, -32)
 texture_scale = 0.5
 

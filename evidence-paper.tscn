@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://kxn78y86fsnr"]
+[gd_scene format=3 uid="uid://dup8enajdqtuk"]
 
-[ext_resource type="Texture2D" uid="uid://d57x70wj74ay" path="res://assets/paperOverlay.png" id="1_ya0bf"]
+[ext_resource type="Texture2D" path="res://assets/paperOverlay.png" id="1_ya0bf"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_225fb"]
 content_margin_left = 16.0
@@ -15,7 +15,7 @@ PanelContainer/styles/panel = SubResource("StyleBoxTexture_225fb")
 font_size = 4
 font_color = Color(0.63529414, 0.53333336, 0.4745098, 1)
 
-[node name="Evidence" type="Control" unique_id=1674041078]
+[node name="Evidence2" type="Control" unique_id=1674041078]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
