@@ -2,5 +2,13 @@
 
 [ext_resource type="Script" uid="uid://djalpfca333uh" path="res://waypoint.gd" id="1_qjbav"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_3d7rh"]
+radius = 4.0
+
 [node name="Waypoint" type="Node2D" unique_id=1550070532]
 script = ExtResource("1_qjbav")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1509323410]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1724340393]
+shape = SubResource("CircleShape2D_3d7rh")

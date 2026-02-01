@@ -39,13 +39,13 @@ waypoints = [NodePath("../Waypoint"), NodePath("../Waypoint2"), NodePath("../Way
 position = Vector2(83, 30)
 
 [node name="Waypoint" parent="." unique_id=1550070532 instance=ExtResource("5_fos0i")]
-position = Vector2(88, 8)
+position = Vector2(88, 16)
 
 [node name="Waypoint2" parent="." unique_id=1484725481 instance=ExtResource("5_fos0i")]
-position = Vector2(136, 56)
+position = Vector2(112, 88)
 
 [node name="Waypoint3" parent="." unique_id=898943527 instance=ExtResource("5_fos0i")]
-position = Vector2(16, 64)
+position = Vector2(80, 80)
 
 [connection signal="player_sound" from="PlayerCharacter" to="Guards" method="_on_player_character_player_sound"]
 [connection signal="player_sound" from="PlayerCharacter" to="Guards2" method="_on_player_character_player_sound"]
