@@ -1,93 +1,7 @@
-[gd_scene format=3 uid="uid://j1dhkdrec1gi"]
+[gd_scene format=3 uid="uid://cgvxnltyi2dkn"]
 
-[ext_resource type="Script" uid="uid://d28fmejghb5wr" path="res://guards.gd" id="1_3rwwn"]
-[ext_resource type="Texture2D" uid="uid://db4u33je5t0y4" path="res://assets/tileset.png" id="1_21a87"]
-[ext_resource type="Texture2D" uid="uid://bxewks0puka62" path="res://light_cone_texture_1.webp" id="3_gsvcv"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3rwwn"]
-load_path = "res://.godot/imported/guards.png-3f9e90050a64a002a29bc96004aa8f59.ctex"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kvivb"]
-atlas = SubResource("CompressedTexture2D_3rwwn")
-region = Rect2(0, 0, 8, 8)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_525xt"]
-atlas = SubResource("CompressedTexture2D_3rwwn")
-region = Rect2(16, 0, 8, 8)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gsvcv"]
-atlas = ExtResource("1_21a87")
-region = Rect2(40, 32, 8, 8)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_at8v6"]
-atlas = ExtResource("1_21a87")
-region = Rect2(48, 32, 8, 8)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_u3nxm"]
-atlas = ExtResource("1_21a87")
-region = Rect2(56, 32, 8, 8)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_yju2m"]
-atlas = ExtResource("1_21a87")
-region = Rect2(32, 40, 8, 8)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gff0w"]
-atlas = ExtResource("1_21a87")
-region = Rect2(40, 40, 8, 8)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_kvivb"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_kvivb")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_525xt")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_gsvcv")
-}],
-"loop": true,
-"name": &"new_animation",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_at8v6")
-}],
-"loop": true,
-"name": &"new_animation_1",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_u3nxm")
-}],
-"loop": true,
-"name": &"new_animation_2",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_yju2m")
-}],
-"loop": true,
-"name": &"new_animation_3",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_gff0w")
-}],
-"loop": true,
-"name": &"new_animation_4",
-"speed": 5.0
-}]
+[ext_resource type="Script" uid="uid://cpea17dscos3w" path="res://guards.gd" id="1_3rwwn"]
+[ext_resource type="SpriteFrames" uid="uid://xdom25lgruni" path="res://guard_template.tres" id="2_3rwwn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_525xt"]
 size = Vector2(8, 8)
@@ -96,8 +10,8 @@ size = Vector2(8, 8)
 script = ExtResource("1_3rwwn")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=70887940]
-sprite_frames = SubResource("SpriteFrames_kvivb")
-frame_progress = 0.41408554
+sprite_frames = ExtResource("2_3rwwn")
+animation = &"walk_left"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=132798384]
 shape = SubResource("RectangleShape2D_525xt")
@@ -113,5 +27,4 @@ default_color = Color(1, 1, 0, 0.11764706)
 position = Vector2(-32, -32)
 color = Color(1, 1, 0, 1)
 shadow_enabled = true
-texture = ExtResource("3_gsvcv")
 texture_scale = 0.5
