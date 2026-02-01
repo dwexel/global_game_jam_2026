@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://cgvxnltyi2dkn"]
+[gd_scene format=3 uid="uid://j1dhkdrec1gi"]
 
 [ext_resource type="Script" uid="uid://cpea17dscos3w" path="res://guards.gd" id="1_3rwwn"]
 [ext_resource type="Texture2D" uid="uid://cnpws2jhc1csa" path="res://assets/guard1.png" id="2_yju2m"]
@@ -450,8 +450,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_525xt"]
-size = Vector2(8, 8)
+[sub_resource type="CircleShape2D" id="CircleShape2D_yju2m"]
+radius = 3.0
 
 [node name="Guards" type="CharacterBody2D" unique_id=441229478]
 script = ExtResource("1_3rwwn")
@@ -463,7 +463,7 @@ frame = 12
 frame_progress = 0.9411013
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=132798384]
-shape = SubResource("RectangleShape2D_525xt")
+shape = SubResource("CircleShape2D_yju2m")
 
 [node name="LightPivot" type="Node2D" parent="." unique_id=206940066]
 
