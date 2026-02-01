@@ -3,8 +3,9 @@ extends Node2D
 # note: hardcoded scene path
 @onready var player = $"/root/Main/PlayerCharacter"
 @onready var level: Level = $"/root/Main/Level"
-const PAPER_EVIDENCE = preload("uid://bppcibjqhnm3u")
-const COMPUTER_EVIDENCE = preload("uid://kxn78y86fsnr")
+
+const EVIDENCE_PAPER = preload("uid://kxn78y86fsnr")
+const EVIDENCE_COMPUTER = preload("uid://bppcibjqhnm3u")
 
 @onready var area2d: Area2D = $Area2D
 signal evidence_picked_up;

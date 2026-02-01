@@ -1,22 +1,25 @@
-[gd_scene format=3 uid="uid://kxn78y86fsnr"]
+[gd_scene format=3 uid="uid://bppcibjqhnm3u"]
 
-[ext_resource type="Texture2D" uid="uid://d57x70wj74ay" path="res://assets/paperOverlay.png" id="1_vhspg"]
+[ext_resource type="Script" uid="uid://rjd3ksbo03ch" path="res://evidence-paper.gd" id="1_kfaox"]
+[ext_resource type="Texture2D" uid="uid://bcgf5s1kmfbso" path="res://assets/computerOverlay.png" id="2_utkai"]
+[ext_resource type="Script" uid="uid://d0d0vmkjbqmpq" path="res://label.gd" id="3_g0kcb"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_225fb"]
-content_margin_left = 16.0
-content_margin_top = 16.0
-content_margin_bottom = 8.0
-texture = ExtResource("1_vhspg")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_14cls"]
+texture = ExtResource("2_utkai")
+texture_margin_left = 20.0
+texture_margin_top = 20.0
+texture_margin_right = 20.0
+texture_margin_bottom = 20.0
 
 [sub_resource type="Theme" id="Theme_p1iy4"]
-PanelContainer/styles/panel = SubResource("StyleBoxTexture_225fb")
+PanelContainer/styles/panel = SubResource("StyleBoxTexture_14cls")
 
-[sub_resource type="LabelSettings" id="LabelSettings_225fb"]
+[sub_resource type="LabelSettings" id="LabelSettings_xeepr"]
 font_size = 4
-font_color = Color(0.0142752165, 0.014275218, 0.014275218, 1)
+font_color = Color(0.023529412, 0.3529412, 0.70980394, 1)
 
 [node name="Evidence" type="Control" unique_id=1674041078]
-visible = false
+z_index = 10
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -25,6 +28,9 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+script = ExtResource("1_kfaox")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1954128231]
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=602557023]
 layout_mode = 1
@@ -39,8 +45,9 @@ theme = SubResource("Theme_p1iy4")
 layout_mode = 2
 
 [node name="Label" type="Label" parent="PanelContainer/ScrollContainer" unique_id=1900564028]
-custom_minimum_size = Vector2(96, 128)
+custom_minimum_size = Vector2(88, 128)
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "\"EMP4a
 can you believe Torrence? 
 
@@ -55,5 +62,6 @@ nah, i was stuck in office all night, dude lol. that’s crazy, tho.
 
 INT. SYSTEMS
 PLEASE DO NOT SPREAD RUMORS ABOUT OUR VICE PRESIDENT. RETURN TO YOUR TASKS. \""
-label_settings = SubResource("LabelSettings_225fb")
+label_settings = SubResource("LabelSettings_xeepr")
 autowrap_mode = 3
+script = ExtResource("3_g0kcb")

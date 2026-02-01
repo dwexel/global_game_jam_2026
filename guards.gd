@@ -23,7 +23,6 @@ var current_path_i = 0
 @export var waypoints: Array[Waypoint]
 var waypoints_i = 0
 
-
 func _physics_process(_delta: float) -> void:
 	var direction = pick_new_direction()
 	var facing_direction = get_facing_direction()
