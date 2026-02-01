@@ -15,7 +15,7 @@ const DRAW_COLOR = Color.WHITE * Color(1, 1, 1, 0.5)
 
 
 func _ready() -> void:
-	_astar.region = Rect2i(0, 0, 100, 100)
+	_astar.region = Rect2i(-100, -100, 100, 100)
 	_astar.cell_size = tile_set.tile_size
 	
 	_astar.offset = tile_set.tile_size * 0.5
