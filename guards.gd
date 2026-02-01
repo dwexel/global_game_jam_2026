@@ -8,13 +8,29 @@ const GUARD_SIGHT_RANGE = 32
 @onready var line_2d: Line2D = $player_check/Line2D
 @onready var player_character: CharacterBody2D = $"../PlayerCharacter"
 @onready var light_cone: Node2D = $LightPivot
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
-func _physics_process(delta: float) -> void:
+#@export_enum("g1", "g2", "g3", "g4") var guard_type: String
+
+var _position_last_frame := Vector2()
+var _cardinal_direction = 0
+	
+func _physics_process(_delta: float) -> void:
 	var direction = pick_new_direction()
+	var facing_direction = get_facing_direction()
+	play_walking_animation(facing_direction)
 	velocity = direction * SPEED
 	move_and_slide()
 	
+func _draw() -> void:
+	select_guard()
 	
+func select_guard():
+	var animation_names := animated_sprite_2d.sprite_frames.get_animation_names()
+	var random_ani_name = animation_names[randi() % animation_names.size()]
+	print(random_ani_name)
+	animated_sprite_2d.play(random_ani_name)
+
 func pick_new_direction():
 	# track the player
 	var pc_pos = -1 * (guards.position - player_character.position)
@@ -54,3 +70,29 @@ func check_door():
 			
 			if collider.is_door(atlas_coords):
 				collider.open_door(map_coords)
+
+func get_facing_direction():
+	var motion = position - _position_last_frame
+
+	if motion.length() > 0.0001:
+		_cardinal_direction = int(4.0 * (motion.rotated(PI / 4.0).angle() + PI) / TAU)
+	_position_last_frame = position
+	return _cardinal_direction
+
+enum IDLE {
+	LEFT = 0,
+	RIGHT = 3,
+	DOWN = 6,
+	UP = 9
+}
+
+func play_walking_animation(cardinal_direction: int):
+	match cardinal_direction:
+		0: # left
+			animated_sprite_2d.set_frame_and_progress(IDLE.LEFT, 0)
+		1: # up
+			animated_sprite_2d.set_frame_and_progress(IDLE.UP, 0)
+		2: # right
+			animated_sprite_2d.set_frame_and_progress(IDLE.RIGHT, 0)
+		3: # down
+			animated_sprite_2d.set_frame_and_progress(IDLE.RIGHT, 0)
