@@ -1,8 +1,8 @@
-[gd_scene format=3 uid="uid://ivdsko5ky70t"]
+[gd_scene format=3 uid="uid://j1dhkdrec1gi"]
 
 [ext_resource type="Script" uid="uid://cpea17dscos3w" path="res://guards.gd" id="1_3rwwn"]
 [ext_resource type="Texture2D" uid="uid://db4u33je5t0y4" path="res://assets/tileset.png" id="1_21a87"]
-[ext_resource type="Texture2D" uid="uid://dib035t2pvhlh" path="res://light_cone_texture_1.webp" id="3_gsvcv"]
+[ext_resource type="Texture2D" uid="uid://dib035t2pvhlh" path="res://assets/light_cone_texture_1.webp" id="3_gsvcv"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3rwwn"]
 load_path = "res://.godot/imported/guards.png-3f9e90050a64a002a29bc96004aa8f59.ctex"
@@ -89,8 +89,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_525xt"]
-size = Vector2(8, 8)
+[sub_resource type="CircleShape2D" id="CircleShape2D_gsvcv"]
+radius = 3.0
 
 [node name="Guards" type="CharacterBody2D" unique_id=441229478]
 script = ExtResource("1_3rwwn")
@@ -100,7 +100,7 @@ sprite_frames = SubResource("SpriteFrames_kvivb")
 frame_progress = 0.41408554
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=132798384]
-shape = SubResource("RectangleShape2D_525xt")
+shape = SubResource("CircleShape2D_gsvcv")
 
 [node name="LightPivot" type="Node2D" parent="." unique_id=206940066]
 

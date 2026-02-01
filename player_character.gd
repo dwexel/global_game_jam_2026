@@ -5,7 +5,7 @@ extends CharacterBody2D
 @export var speed := 50
 
 # in order to compare w/ current input
-var last_direction
+var last_direction = Vector2.RIGHT
 
 
 

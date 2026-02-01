@@ -4,7 +4,6 @@
 [ext_resource type="TileSet" uid="uid://ds87wjdr3plwd" path="res://assets/tile_set.tres" id="1_r0du0"]
 [ext_resource type="Script" uid="uid://djkq53xtgcjym" path="res://tile_map_layer.gd" id="2_r0du0"]
 [ext_resource type="PackedScene" uid="uid://j1dhkdrec1gi" path="res://guards.tscn" id="4_cm0pq"]
-[ext_resource type="PackedScene" uid="uid://csqv44k1oivre" path="res://waypoint.tscn" id="5_fos0i"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_r0du0"]
 font_size = 8
@@ -24,7 +23,7 @@ script = ExtResource("2_r0du0")
 tile_set = ExtResource("1_r0du0")
 
 [node name="PlayerCharacter" parent="." unique_id=1358153242 instance=ExtResource("1_glv2v")]
-position = Vector2(17, 91)
+position = Vector2(37, 38)
 collision_mask = 3
 
 [node name="Label" type="Label" parent="." unique_id=1050797892]
@@ -35,19 +34,8 @@ offset_bottom = 122.0
 text = "this is a caption"
 label_settings = SubResource("LabelSettings_r0du0")
 
-[node name="Guards" parent="." unique_id=441229478 node_paths=PackedStringArray("waypoints") instance=ExtResource("4_cm0pq")]
+[node name="Guards" parent="." unique_id=441229478 instance=ExtResource("4_cm0pq")]
 position = Vector2(103, 25)
-waypoints = [NodePath("../Waypoints/Waypoint"), NodePath("../Waypoints/Waypoint2")]
 
 [node name="Guards2" parent="." unique_id=1064521921 instance=ExtResource("4_cm0pq")]
 position = Vector2(83, 30)
-
-[node name="Waypoints" type="Node2D" parent="." unique_id=1948217588]
-
-[node name="Waypoint" parent="Waypoints" unique_id=1471290586 instance=ExtResource("5_fos0i")]
-top_level = true
-position = Vector2(32, 40)
-
-[node name="Waypoint2" parent="Waypoints" unique_id=301870051 instance=ExtResource("5_fos0i")]
-top_level = true
-position = Vector2(80, 80)
