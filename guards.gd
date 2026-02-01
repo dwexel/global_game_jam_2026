@@ -9,6 +9,7 @@ const GUARD_SIGHT_RANGE = 42
 @onready var line_2d: Line2D = $player_check/Line2D
 @onready var player_character: CharacterBody2D = $"../PlayerCharacter"
 @onready var light_cone: Node2D = $LightPivot
+@onready var light_cone_actual = $LightPivot/PointLight2D
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var level: Level = $"/root/Main/Level"
 
@@ -24,14 +25,14 @@ var current_path_i = 0
 var waypoints_i = 0
 
 # for detecting the player
-#var player_time = 0.0
+var player_time = 0.0
 
 # what mask color are we looking for
 # player should never have "none"
 var looking_for_mask = "none"
 
 # what is the current time to detect the player?
-#var player_timeout = 3
+var player_timeout = 2
 
 
 var chase_mode = false
@@ -39,7 +40,8 @@ var chase_mode = false
 
 
 func _ready() -> void:
-	looking_for_mask = "green"
+	#looking_for_mask = "green"
+	looking_for_mask = player_character.masks[randi() % len(player_character.masks)]
 	set_cone_color(looking_for_mask)
 
 func set_cone_color(mask):
@@ -71,7 +73,15 @@ func _physics_process(_delta: float) -> void:
 	var player = check_for_player(guard_destination)
 	if player:
 		if player_character.get_mask_color() == looking_for_mask:
-			print("yeah")
+			player_time += _delta
+			print("here")
+	
+	light_cone_actual.energy = lerpf(1, 4.5, (player_time/2))
+	light_cone_actual.energy = clampf(light_cone_actual.energy, 1, 4.5)
+	
+	if player_time > 2:
+		print("game over")
+	
 	
 	velocity = direction * SPEED
 	move_and_slide()
