@@ -1,6 +1,7 @@
 extends CharacterBody2D
+class_name Guard
 
-const SPEED = 0.75
+const SPEED = 10
 const GUARD_SIGHT_RANGE = 32
 
 @onready var guards: CharacterBody2D = $"."
@@ -9,16 +10,34 @@ const GUARD_SIGHT_RANGE = 32
 @onready var player_character: CharacterBody2D = $"../PlayerCharacter"
 @onready var light_cone: Node2D = $LightPivot
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+@onready var level: Level = $"/root/Main/Level"
 
 #@export_enum("g1", "g2", "g3", "g4") var guard_type: String
 
 var _position_last_frame := Vector2()
 var _cardinal_direction = 0
-	
+
+var current_path
+var current_path_i = 0
+
+@export var waypoints: Array[Waypoint]
+var waypoints_i = 0
+
+
+
 func _physics_process(_delta: float) -> void:
 	var direction = pick_new_direction()
 	var facing_direction = get_facing_direction()
 	play_walking_animation(facing_direction)
+	
+	var guard_destination = get_guard_destination()
+	light_cone.look_at(guard_destination)
+	var player = check_for_player(guard_destination)
+	
+	if player:
+		print("found")
+	
+	
 	velocity = direction * SPEED
 	move_and_slide()
 	
@@ -31,32 +50,81 @@ func select_guard():
 	print(random_ani_name)
 	animated_sprite_2d.play(random_ani_name)
 
-func pick_new_direction():
-	# track the player
-	var pc_pos = -1 * (guards.position - player_character.position)
-	var pc_direction = pc_pos.limit_length(GUARD_SIGHT_RANGE)
+# deal with the path
+func pick_new_direction() -> Vector2:
+	if current_path == null:
+		#print("selecting new path...", self)
+		
+		var _dest = select_next_waypoint()
+		if _dest == null:
+			return Vector2.ZERO
+		
+		# takes pixel coordinates local to the level node
+		current_path = level.find_path(position, _dest.position)
+		current_path_i = 0
+		
+		assert(current_path != null)
+		assert(len(current_path) > 0)
+		
+
+	
+	var _direction: Vector2 = (current_path[current_path_i] - position)
+	
+	if _direction.length() < 2:
+		current_path_i += 1
+	
+	if current_path_i == len(current_path):
+		current_path = null
+		current_path_i = null
+		return Vector2.ZERO
+	
+	_direction = (current_path[current_path_i] - position)
+	
+	return _direction.normalized()
+	
+
+
+func select_next_waypoint() -> Waypoint:
+	if len(waypoints) == 0:
+		return null;
+	
+	waypoints_i = (waypoints_i + 1) % len(waypoints)
+	return (waypoints[waypoints_i])
+
+
+func get_guard_destination() -> Vector2:
+	if len(waypoints) == 0:
+		return Vector2(0, 0)
+	
+	return waypoints[waypoints_i].global_position
+	
+
+func check_for_player(by_pointing_at: Vector2):
+	var pc_pos = -1 * (guards.position - by_pointing_at)
 	player_check.target_position = pc_pos
+	
+	# visual only aspect
+	var pc_direction = pc_pos.limit_length(GUARD_SIGHT_RANGE)
 	line_2d.points = [Vector2(0,0), pc_direction]
 	
-	# point light at the player
-	light_cone.look_at(player_character.global_position)
+	var player_pos = player_character.position - guards.position
+	
+	
 	
 	if player_check.is_colliding():
-		if player_check.get_collider() != player_character:
-			return Vector2(0, 0)
+		if player_check.get_collider() == player_character:
+			if player_pos.length() <= GUARD_SIGHT_RANGE:
+				return true
 	
-	
-	if pc_pos.length() < GUARD_SIGHT_RANGE:
-		#print("player found")
-		return pc_pos
-	else:
-		#print("no player found")
-		return Vector2(0,0)
+	return false
 
 func check_door():
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
 		var collider = collision.get_collider()
+		
+		if collider is Guard:
+			print("collided with guard here")
 		
 		if collider is Level:
 			var _global_position = collision.get_position()
@@ -96,3 +164,30 @@ func play_walking_animation(cardinal_direction: int):
 			animated_sprite_2d.set_frame_and_progress(IDLE.RIGHT, 0)
 		3: # down
 			animated_sprite_2d.set_frame_and_progress(IDLE.RIGHT, 0)
+
+
+func _on_player_character_player_sound(at: Vector2) -> void:
+	var at_distance = (position - at).length()
+	
+	if at_distance >= 60:
+		return
+	
+	var wait_time
+	
+	if at_distance < 60:
+		wait_time = 3
+	elif at_distance < 30:
+		wait_time = 0.5
+
+	await get_tree().create_timer(wait_time).timeout
+	
+	var _w = Waypoint.new()
+	_w.position = at
+	waypoints.insert(waypoints_i, _w)
+	
+	print(waypoints)
+	current_path = level.find_path(position, at)
+	current_path_i = 0
+	
+	assert(current_path != null)
+	assert(len(current_path) > 0)

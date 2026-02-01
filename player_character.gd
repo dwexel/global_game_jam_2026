@@ -7,7 +7,8 @@ extends CharacterBody2D
 # in order to compare w/ current input
 var last_direction
 
-
+# cause something happened to alert them
+signal player_sound(at: Vector2)
 
 
 func _physics_process(delta):
@@ -29,10 +30,6 @@ func _physics_process(delta):
 	# the character collides for one frame.
 	move_and_slide()
 	check_slide_collisions()
-	
-
-
-
 
 
 
@@ -51,26 +48,30 @@ func check_slide_collisions():
 			
 			# tile info
 			var map_coords = collider.local_to_map(_tile_position)
-			var tile_data = collider.get_cell_tile_data(map_coords)
+			var _tile_data = collider.get_cell_tile_data(map_coords)
 			var atlas_coords = collider.get_cell_atlas_coords(map_coords)
 			
-			# check surroundings
-			#print(map_coords, atlas_coords)
 			if collider.is_door(atlas_coords):
 				collider.open_door(map_coords)
+				emit_door()
 				return
 
 			for map_coord in collider.get_surrounding_cells(map_coords):
 				var atlas_coord = collider.get_cell_atlas_coords(map_coord)
-				#print(map_coord)
 				if collider.is_door(atlas_coord):
-					#pprint
 					collider.open_door(map_coord)
+					emit_door()
 					return
 			
 				
 			
-				
+
+func emit_door():
+	player_sound.emit(position)
+	
+	pass
+
+
 
 @onready var bar = $BarEmpty
 @onready var bar1 = $BarEmpty/BarFill
