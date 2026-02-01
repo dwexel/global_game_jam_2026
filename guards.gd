@@ -10,7 +10,7 @@ const GUARD_SIGHT_RANGE = 32
 
 func _physics_process(delta: float) -> void:
 	var direction = pick_new_direction()
-	velocity = direction * SPEED * delta
+	velocity = direction * SPEED
 	move_and_slide()
 	
 func pick_new_direction():
