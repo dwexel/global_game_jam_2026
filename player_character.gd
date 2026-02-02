@@ -25,10 +25,19 @@ var current_mask: int = 0
 
 @onready var animated_sprite = $AnimatedSprite2D
 
+# direction of last successful player movement
+var last_movement = Vector2i(-1, 0)
+
+
+var tex = preload("res://assets/barEmpty.png")
 
 
 func _physics_process(delta):
-	var direction = Input.get_vector("left", "right", "up", "down")
+	var direction = Vector2i(
+		Input.get_axis("left", "right"),
+		Input.get_axis("up", "down")
+	)
+	
 	
 	if direction.x == 0:
 		last_direction = direction
@@ -41,18 +50,46 @@ func _physics_process(delta):
 		elif last_direction.y == 0:
 			direction.x = 0
 	
+	
+	
 	velocity = direction * speed
 
 	# the character collides for one frame.
+	
 	move_and_slide()
 	check_slide_collisions()
 	
-	if Input.is_action_just_pressed("dialogic_default_action"):
-		current_mask = (current_mask + 1) % len(masks)
-		animated_sprite.play(masks[current_mask])
-		
+	if velocity.length() > 0.1:
+		if direction.x == 1:
+			animated_sprite.play("walk_right")
+			last_movement = direction
+		elif direction.x == -1:
+			animated_sprite.play("walk_left")
+			last_movement = direction
+		elif direction.y == 1:
+			animated_sprite.play("walk_down")
+			last_movement = direction
+		elif direction.y == -1:
+			animated_sprite.play("walk_up")
+			last_movement = direction
+	else:
+		if last_movement.x == 1:
+			animated_sprite.play("idle_right")
+		elif last_movement.x == -1:
+			animated_sprite.play("idle_left")
+		elif last_movement.y == 1:
+			animated_sprite.play("idle_down")
+		elif last_movement.y == -1:
+			animated_sprite.play("idle_up")
 	
 	
+	
+	#if Input.is_action_just_pressed("dialogic_default_action"):
+		#current_mask = (current_mask + 1) % len(masks)
+		#animated_sprite.play(masks[current_mask])
+	
+	animated_sprite.sprite_frames
+
 
 
 

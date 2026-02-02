@@ -80,7 +80,7 @@ movie_writer/movie_file="C:/Users/dexte/Desktop/movie.avi"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/dialogic/plugin.cfg")
+enabled=PackedStringArray()
 
 [gui]
 
