@@ -52,3 +52,6 @@ texture = ExtResource("4_6qc1w")
 [node name="BarFill6" type="Sprite2D" parent="BarEmpty" unique_id=1737455855]
 position = Vector2(2, 0)
 texture = ExtResource("4_6qc1w")
+
+[node name="AudioListener2D" type="AudioListener2D" parent="." unique_id=308774603]
+current = true

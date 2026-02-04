@@ -24,118 +24,26 @@ script = ExtResource("2_r0du0")
 metadata/_edit_lock_ = true
 
 [node name="PlayerCharacter" parent="." unique_id=1358153242 instance=ExtResource("1_glv2v")]
-position = Vector2(-124, 28)
+position = Vector2(37, 38)
 collision_mask = 3
-safe_margin = 0.228
-speed = 35
 
 [node name="Camera2D" type="Camera2D" parent="PlayerCharacter" unique_id=855912787]
 
 [node name="Waypoint" parent="." unique_id=1550070532 instance=ExtResource("5_fos0i")]
-position = Vector2(140, 164)
-wait = 2.0
+position = Vector2(52, 68)
 
 [node name="Waypoint2" parent="." unique_id=1484725481 instance=ExtResource("5_fos0i")]
-position = Vector2(108, 108)
+position = Vector2(112, 88)
 
 [node name="Waypoint3" parent="." unique_id=898943527 instance=ExtResource("5_fos0i")]
-position = Vector2(156, 12)
+position = Vector2(80, 80)
 
-[node name="Waypoint4" parent="." unique_id=402871483 instance=ExtResource("5_fos0i")]
-position = Vector2(52, 12)
-
-[node name="Waypoint5" parent="." unique_id=2131966975 instance=ExtResource("5_fos0i")]
-position = Vector2(4, 84)
-
-[node name="Waypoint6" parent="." unique_id=488063555 instance=ExtResource("5_fos0i")]
-position = Vector2(-52, 148)
-
-[node name="Waypoint7" parent="." unique_id=2126606513 instance=ExtResource("5_fos0i")]
-position = Vector2(-20, -84)
-
-[node name="Waypoint8" parent="." unique_id=692562792 instance=ExtResource("5_fos0i")]
-position = Vector2(20, -84)
-
-[node name="Waypoint9" parent="." unique_id=1198544902 instance=ExtResource("5_fos0i")]
-position = Vector2(-148, -36)
-
-[node name="Waypoint20" parent="." unique_id=29265085 instance=ExtResource("5_fos0i")]
-position = Vector2(-156, -164)
-wait = 2.0
-
-[node name="Waypoint21" parent="." unique_id=849025580 instance=ExtResource("5_fos0i")]
-position = Vector2(-92, -164)
-wait = 2.0
-
-[node name="Waypoint10" parent="." unique_id=1125342257 instance=ExtResource("5_fos0i")]
-position = Vector2(12, -20)
-
-[node name="Waypoint11" parent="." unique_id=64563013 instance=ExtResource("5_fos0i")]
-position = Vector2(-4, -140)
-
-[node name="Waypoint12" parent="." unique_id=2081842528 instance=ExtResource("5_fos0i")]
-position = Vector2(84, -108)
-
-[node name="Waypoint13" parent="." unique_id=2081582570 instance=ExtResource("5_fos0i")]
-position = Vector2(12, 172)
-
-[node name="Waypoint14" parent="." unique_id=433458614 instance=ExtResource("5_fos0i")]
-position = Vector2(-132, 140)
-
-[node name="Waypoint15" parent="." unique_id=382986346 instance=ExtResource("5_fos0i")]
-position = Vector2(-132, 76)
-
-[node name="Waypoint16" parent="." unique_id=1688664821 instance=ExtResource("5_fos0i")]
-position = Vector2(-172, 172)
-
-[node name="Waypoint17" parent="." unique_id=1844213045 instance=ExtResource("5_fos0i")]
-position = Vector2(-140, 12)
-
-[node name="Waypoint18" parent="." unique_id=290657841 instance=ExtResource("5_fos0i")]
-position = Vector2(164, -84)
-
-[node name="Waypoint19" parent="." unique_id=202478370 instance=ExtResource("5_fos0i")]
-position = Vector2(100, -20)
-
-[node name="Node2D" type="Node2D" parent="." unique_id=1350756713]
-
-[node name="Guards" parent="Node2D" unique_id=441229478 node_paths=PackedStringArray("waypoints") instance=ExtResource("4_cm0pq")]
+[node name="Guards" parent="." unique_id=441229478 node_paths=PackedStringArray("waypoints") instance=ExtResource("4_cm0pq")]
 position = Vector2(60, 28)
-waypoints = [NodePath("../../Waypoint"), NodePath("../../Waypoint2"), NodePath("../../Waypoint"), NodePath("../../Waypoint4")]
+waypoints = [NodePath("../Waypoint"), NodePath("../Waypoint2")]
 
-[node name="Guards2" parent="Node2D" unique_id=204900825 node_paths=PackedStringArray("waypoints") instance=ExtResource("4_cm0pq")]
-position = Vector2(-92, 84)
-waypoints = [NodePath("../../Waypoint5")]
+[node name="Guards2" parent="." unique_id=204900825 instance=ExtResource("4_cm0pq")]
+position = Vector2(108, -99)
 
-[node name="Guards3" parent="Node2D" unique_id=1754293072 node_paths=PackedStringArray("waypoints") instance=ExtResource("4_cm0pq")]
-position = Vector2(60, 164)
-waypoints = [NodePath("../../Waypoint"), NodePath("../../Waypoint2"), NodePath("../../Waypoint5"), NodePath("../../Waypoint6")]
-wait = 2.0
-
-[node name="Guards4" parent="Node2D" unique_id=1447157928 node_paths=PackedStringArray("waypoints") instance=ExtResource("4_cm0pq")]
-position = Vector2(-124, -36)
-waypoints = [NodePath("../../Waypoint10"), NodePath("../../Waypoint9"), NodePath("../../Waypoint8"), NodePath("../../Waypoint7")]
-
-[node name="Guards10" parent="Node2D" unique_id=1503311122 node_paths=PackedStringArray("waypoints") instance=ExtResource("4_cm0pq")]
-position = Vector2(-84, -76)
-waypoints = [NodePath("../../Waypoint9"), NodePath("../../Waypoint20"), NodePath("../../Waypoint21")]
-
-[node name="Guards5" parent="Node2D" unique_id=446884399 node_paths=PackedStringArray("waypoints") instance=ExtResource("4_cm0pq")]
-position = Vector2(-4, -140)
-waypoints = [NodePath("../../Waypoint11"), NodePath("../../Waypoint12")]
-
-[node name="Guards6" parent="Node2D" unique_id=1578516755 node_paths=PackedStringArray("waypoints") instance=ExtResource("4_cm0pq")]
-position = Vector2(-148, 76)
-waypoints = [NodePath("../../Waypoint6"), NodePath("../../Waypoint16"), NodePath("../../Waypoint6"), NodePath("../../Waypoint14")]
-
-[node name="Guards7" parent="Node2D" unique_id=323273839 node_paths=PackedStringArray("waypoints") instance=ExtResource("4_cm0pq")]
-position = Vector2(124, -28)
-waypoints = [NodePath("../../Waypoint3"), NodePath("../../Waypoint5"), NodePath("../../Waypoint17"), NodePath("../../Waypoint10")]
-
-[node name="Guards8" parent="Node2D" unique_id=1398137317 node_paths=PackedStringArray("waypoints") instance=ExtResource("4_cm0pq")]
-position = Vector2(76, -84)
-waypoints = [NodePath("../../Waypoint10"), NodePath("../../Waypoint18")]
-
-[node name="Guards9" parent="Node2D" unique_id=732513303 node_paths=PackedStringArray("waypoints") instance=ExtResource("4_cm0pq")]
-position = Vector2(140, 140)
-waypoints = [NodePath("../../Waypoint3"), NodePath("../../Waypoint5"), NodePath("../../Waypoint19"), NodePath("../../Waypoint3"), NodePath("../../Waypoint19")]
+[connection signal="player_sound" from="PlayerCharacter" to="Guards" method="_on_player_character_player_sound"]
+[connection signal="player_sound" from="PlayerCharacter" to="Guards2" method="_on_player_character_player_sound"]

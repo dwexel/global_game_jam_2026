@@ -513,5 +513,3 @@ target_position = Vector2(-48, 0)
 visible = false
 points = PackedVector2Array(-20, 0)
 default_color = Color(1, 1, 0, 0.11764706)
-
-[node name="wall_check" type="RayCast2D" parent="." unique_id=747163880]

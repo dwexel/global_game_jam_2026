@@ -1,5 +1,4 @@
 extends CharacterBody2D
-#extends KinematicBody2D
 
 # Movement speed in pixels per second.
 @export var speed := 50
@@ -11,17 +10,11 @@ var last_direction
 signal player_sound(at: Vector2)
 signal alert_guards(at, radius, mask_color)
 
-#enum Masks {
-	#GREEN,
-	#BLUE,
-	#RED
-#}
-
 # have the names of the animations in the sprite
 var masks = ["yellow", "white", "red", "green", "blue"]
 
 # for selection
-var current_mask: int = 0
+var current_mask = 4
 
 @onready var animated_sprite = $AnimatedSprite2D
 
@@ -29,10 +22,9 @@ var current_mask: int = 0
 var last_movement = Vector2i(-1, 0)
 
 
-var tex = preload("res://assets/barEmpty.png")
-
 
 func _physics_process(delta):
+	# conversion is fine
 	var direction = Vector2i(
 		Input.get_axis("left", "right"),
 		Input.get_axis("up", "down")
@@ -88,7 +80,7 @@ func _physics_process(delta):
 		#current_mask = (current_mask + 1) % len(masks)
 		#animated_sprite.play(masks[current_mask])
 	
-	animated_sprite.sprite_frames
+	
 
 
 
@@ -114,14 +106,14 @@ func check_slide_collisions():
 			
 			if collider.is_door(atlas_coords):
 				collider.open_door(map_coords)
-				#emit_door()
+				emit_door()
 				return
 
 			for map_coord in collider.get_surrounding_cells(map_coords):
 				var atlas_coord = collider.get_cell_atlas_coords(map_coord)
 				if collider.is_door(atlas_coord):
 					collider.open_door(map_coord)
-					#emit_door()
+					emit_door()
 					return
 
 
