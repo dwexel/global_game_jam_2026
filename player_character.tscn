@@ -47,28 +47,35 @@ autoplay = "default"
 
 [node name="BarEmpty" type="Sprite2D" parent="." unique_id=295227552]
 visible = false
+light_mask = 0
 position = Vector2(0, 8)
 texture = ExtResource("3_0hvvw")
 
 [node name="BarFill" type="Sprite2D" parent="BarEmpty" unique_id=1025771850]
+light_mask = 0
 position = Vector2(-3, 0)
 texture = ExtResource("4_6qc1w")
 
 [node name="BarFill2" type="Sprite2D" parent="BarEmpty" unique_id=1300142635]
+light_mask = 0
 position = Vector2(-2, 0)
 texture = ExtResource("4_6qc1w")
 
 [node name="BarFill3" type="Sprite2D" parent="BarEmpty" unique_id=81089214]
+light_mask = 0
 position = Vector2(-1, 0)
 texture = ExtResource("4_6qc1w")
 
 [node name="BarFill4" type="Sprite2D" parent="BarEmpty" unique_id=95222172]
+light_mask = 0
 texture = ExtResource("4_6qc1w")
 
 [node name="BarFill5" type="Sprite2D" parent="BarEmpty" unique_id=907151134]
+light_mask = 0
 position = Vector2(1, 0)
 texture = ExtResource("4_6qc1w")
 
 [node name="BarFill6" type="Sprite2D" parent="BarEmpty" unique_id=1737455855]
+light_mask = 0
 position = Vector2(2, 0)
 texture = ExtResource("4_6qc1w")

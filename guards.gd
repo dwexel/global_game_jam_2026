@@ -189,3 +189,8 @@ func _on_player_character_player_sound(at: Vector2) -> void:
 	
 	assert(current_path != null)
 	assert(len(current_path) > 0)
+
+
+func _on_evidence(evidence_pos: Vector2):
+	print(evidence_pos)
+	pass

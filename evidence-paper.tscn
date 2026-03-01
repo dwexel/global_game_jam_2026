@@ -1,5 +1,6 @@
-[gd_scene format=3 uid="uid://kxn78y86fsnr"]
+[gd_scene format=3 uid="uid://c6bs0yg8a3s6j"]
 
+[ext_resource type="Script" path="res://evidence-paper.gd" id="1_7dueb"]
 [ext_resource type="Texture2D" uid="uid://d57x70wj74ay" path="res://assets/paperOverlay.png" id="1_ya0bf"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_225fb"]
@@ -24,6 +25,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+script = ExtResource("1_7dueb")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=602557023]
 layout_mode = 1

@@ -17,6 +17,10 @@ func _ready() -> void:
 	label.text = full_text
 	evidence.position = Vector2(0,0)
 	evidence.size = Vector2(128, 128)
+	
+	# hm
+	print(process_mode)
+	process_mode = Node.PROCESS_MODE_ALWAYS
 
 func list_files_in_directory(path: String) -> Array:
 	# Use the static method for convenience
@@ -26,16 +30,16 @@ func list_files_in_directory(path: String) -> Array:
 		print("No files found or an error occurred when trying to access the path.")
 		return []
 
-	print("Files in directory: " + path)
+	#print("Files in directory: " + path)
 	for file_name in files:
 		# Construct the full path if needed, e.g., for loading the resource
 		var full_path = path.path_join(file_name) 
-		print(full_path)
+		#print(full_path)
 		var current_file = read_csv_file(full_path)
 		documents_all.append(current_file)
 		# To load a resource dynamically:
 		# var loaded_resource = ResourceLoader.load(full_path)
-	print("documents ", documents_all)
+	#print("documents ", documents_all)
 	return documents_all
 
 func read_csv_file(file_path):
@@ -56,8 +60,12 @@ func read_csv_file(file_path):
 	return data
 
 func _input(event: InputEvent) -> void:
-	const FULL_SPEED = 1.0
+	#const FULL_SPEED = 1.0
+	#print(event)
+	
 	var is_wasd_input = event.is_action_pressed("down") || event.is_action_pressed("left") || event.is_action_pressed("up") || event.is_action_pressed("right")
 	if is_wasd_input:
-		Engine.set_time_scale(FULL_SPEED)
+		#Engine.set_time_scale(FULL_SPEED)
+		
+		get_tree().paused = false
 		evidence.queue_free()

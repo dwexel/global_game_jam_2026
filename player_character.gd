@@ -8,7 +8,7 @@ extends CharacterBody2D
 var last_direction
 
 # cause something happened to alert them
-signal player_sound(at: Vector2)
+#signal player_sound(at: Vector2)
 
 
 func _physics_process(delta):
@@ -19,7 +19,6 @@ func _physics_process(delta):
 	elif direction.y == 0:
 		last_direction = direction
 	else:
-		# hmm
 		if last_direction.x == 0:
 			direction.y = 0
 		elif last_direction.y == 0:
@@ -66,7 +65,7 @@ func check_slide_collisions():
 			
 
 func emit_door():
-	player_sound.emit(position)
+	#player_sound.emit(position)
 	pass
 
 

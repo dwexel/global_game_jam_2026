@@ -27,12 +27,16 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body == player:
 		player.set_bar_hidden()
-		
 		timer.timeout.disconnect(_on_timeout)
 		timer = null
 
 func _on_timeout():
 	evidence_picked_up.emit()
+	
+	#get_groups()
+	
+	get_tree().call_group("Guards", "_on_evidence", position)
+	
 	# our maps are superimposed
 	var map_coords = level.local_to_map(position)
 	level.do_pickup(map_coords)
