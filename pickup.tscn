@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dgd8kv4qw5eyu"]
 
 [ext_resource type="Script" uid="uid://cpydbbhuyabob" path="res://pickup.gd" id="1_iqk3k"]
+[ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="2_weqpt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pu7wf"]
 size = Vector2(12, 12)
@@ -12,6 +13,12 @@ script = ExtResource("1_iqk3k")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2006199302]
 shape = SubResource("RectangleShape2D_pu7wf")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=708790047]
+modulate = Color(1, 1, 1, 0.22352941)
+position = Vector2(-2.9802322e-08, 1.1920929e-07)
+scale = Vector2(0.09375001, 0.09375)
+texture = ExtResource("2_weqpt")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
