@@ -162,6 +162,9 @@ func is_pickup(atlas_coords: Vector2i):
 	return false
 
 
+func set_pickup_color(map_coords: Vector2i, color):
+	pass
+
 #func get_color(atlas_coords: Vector2i):
 	#if atlas_coords.x == 0:
 		#return GREEN

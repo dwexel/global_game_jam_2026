@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://djkq53xtgcjym" path="res://tile_map_layer.gd" id="2_r0du0"]
 [ext_resource type="PackedScene" uid="uid://cgvxnltyi2dkn" path="res://guards.tscn" id="4_cm0pq"]
 [ext_resource type="PackedScene" uid="uid://ckc32utoven88" path="res://waypoint.tscn" id="5_fos0i"]
+[ext_resource type="PackedScene" uid="uid://dgd8kv4qw5eyu" path="res://pickup.tscn" id="6_3dxm6"]
 
 [node name="Main" type="Node2D" unique_id=1614393884]
 
@@ -97,45 +98,53 @@ position = Vector2(164, -84)
 [node name="Waypoint19" parent="." unique_id=202478370 instance=ExtResource("5_fos0i")]
 position = Vector2(100, -20)
 
-[node name="Node2D" type="Node2D" parent="." unique_id=1350756713]
+[node name="AllGuards" type="Node2D" parent="." unique_id=1350756713]
 
-[node name="Guards" parent="Node2D" unique_id=441229478 node_paths=PackedStringArray("waypoints") instance=ExtResource("4_cm0pq")]
+[node name="Guards" parent="AllGuards" unique_id=441229478 node_paths=PackedStringArray("waypoints") groups=["Guards"] instance=ExtResource("4_cm0pq")]
 position = Vector2(60, 28)
 waypoints = [NodePath("../../Waypoint"), NodePath("../../Waypoint2"), NodePath("../../Waypoint"), NodePath("../../Waypoint4")]
 
-[node name="Guards2" parent="Node2D" unique_id=204900825 node_paths=PackedStringArray("waypoints") instance=ExtResource("4_cm0pq")]
+[node name="Guards2" parent="AllGuards" unique_id=204900825 node_paths=PackedStringArray("waypoints") groups=["Guards"] instance=ExtResource("4_cm0pq")]
 position = Vector2(-92, 84)
 waypoints = [NodePath("../../Waypoint5")]
 
-[node name="Guards3" parent="Node2D" unique_id=1754293072 node_paths=PackedStringArray("waypoints") instance=ExtResource("4_cm0pq")]
+[node name="Guards3" parent="AllGuards" unique_id=1754293072 node_paths=PackedStringArray("waypoints") groups=["Guards"] instance=ExtResource("4_cm0pq")]
 position = Vector2(60, 164)
 waypoints = [NodePath("../../Waypoint"), NodePath("../../Waypoint2"), NodePath("../../Waypoint5"), NodePath("../../Waypoint6")]
 wait = 2.0
 
-[node name="Guards4" parent="Node2D" unique_id=1447157928 node_paths=PackedStringArray("waypoints") instance=ExtResource("4_cm0pq")]
+[node name="Guards4" parent="AllGuards" unique_id=1447157928 node_paths=PackedStringArray("waypoints") groups=["Guards"] instance=ExtResource("4_cm0pq")]
 position = Vector2(-124, -36)
 waypoints = [NodePath("../../Waypoint10"), NodePath("../../Waypoint9"), NodePath("../../Waypoint8"), NodePath("../../Waypoint7")]
 
-[node name="Guards10" parent="Node2D" unique_id=1503311122 node_paths=PackedStringArray("waypoints") instance=ExtResource("4_cm0pq")]
+[node name="Guards10" parent="AllGuards" unique_id=1503311122 node_paths=PackedStringArray("waypoints") groups=["Guards"] instance=ExtResource("4_cm0pq")]
 position = Vector2(-84, -76)
 waypoints = [NodePath("../../Waypoint9"), NodePath("../../Waypoint20"), NodePath("../../Waypoint21")]
 
-[node name="Guards5" parent="Node2D" unique_id=446884399 node_paths=PackedStringArray("waypoints") instance=ExtResource("4_cm0pq")]
+[node name="Guards5" parent="AllGuards" unique_id=446884399 node_paths=PackedStringArray("waypoints") groups=["Guards"] instance=ExtResource("4_cm0pq")]
 position = Vector2(-4, -140)
 waypoints = [NodePath("../../Waypoint11"), NodePath("../../Waypoint12")]
 
-[node name="Guards6" parent="Node2D" unique_id=1578516755 node_paths=PackedStringArray("waypoints") instance=ExtResource("4_cm0pq")]
+[node name="Guards6" parent="AllGuards" unique_id=1578516755 node_paths=PackedStringArray("waypoints") groups=["Guards"] instance=ExtResource("4_cm0pq")]
 position = Vector2(-148, 76)
 waypoints = [NodePath("../../Waypoint6"), NodePath("../../Waypoint16"), NodePath("../../Waypoint6"), NodePath("../../Waypoint14")]
 
-[node name="Guards7" parent="Node2D" unique_id=323273839 node_paths=PackedStringArray("waypoints") instance=ExtResource("4_cm0pq")]
+[node name="Guards7" parent="AllGuards" unique_id=323273839 node_paths=PackedStringArray("waypoints") groups=["Guards"] instance=ExtResource("4_cm0pq")]
 position = Vector2(124, -28)
 waypoints = [NodePath("../../Waypoint3"), NodePath("../../Waypoint5"), NodePath("../../Waypoint17"), NodePath("../../Waypoint10")]
 
-[node name="Guards8" parent="Node2D" unique_id=1398137317 node_paths=PackedStringArray("waypoints") instance=ExtResource("4_cm0pq")]
+[node name="Guards8" parent="AllGuards" unique_id=1398137317 node_paths=PackedStringArray("waypoints") groups=["Guards"] instance=ExtResource("4_cm0pq")]
 position = Vector2(76, -84)
 waypoints = [NodePath("../../Waypoint10"), NodePath("../../Waypoint18")]
 
-[node name="Guards9" parent="Node2D" unique_id=732513303 node_paths=PackedStringArray("waypoints") instance=ExtResource("4_cm0pq")]
+[node name="Guards9" parent="AllGuards" unique_id=732513303 node_paths=PackedStringArray("waypoints") groups=["Guards"] instance=ExtResource("4_cm0pq")]
 position = Vector2(140, 140)
 waypoints = [NodePath("../../Waypoint3"), NodePath("../../Waypoint5"), NodePath("../../Waypoint19"), NodePath("../../Waypoint3"), NodePath("../../Waypoint19")]
+
+[node name="Pickups" type="Node2D" parent="." unique_id=1065261272]
+
+[node name="Pickup" parent="Pickups" unique_id=1854647972 instance=ExtResource("6_3dxm6")]
+position = Vector2(-124, -84)
+
+[node name="Pickup2" parent="Pickups" unique_id=1155449227 instance=ExtResource("6_3dxm6")]
+position = Vector2(-156, -84)

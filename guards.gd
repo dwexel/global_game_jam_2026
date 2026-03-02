@@ -8,7 +8,7 @@ const GUARD_CONE_ANGLE = deg_to_rad(45)
 @onready var guards: CharacterBody2D = $"."
 @onready var player_check: RayCast2D = $player_check
 @onready var line_2d: Line2D = $player_check/Line2D
-@onready var player_character: CharacterBody2D = $"/root/Main/PlayerCharacter"
+@onready var player_character: Player = $"/root/Main/PlayerCharacter"
 @onready var light_cone: Node2D = $LightPivot
 @onready var light_cone_actual = $LightPivot/PointLight2D
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
@@ -47,7 +47,11 @@ var nomove = false
 
 
 func _ready() -> void:
-	looking_for_mask = player_character.masks[randi() % len(player_character.masks)]
+	seed(randi())
+	looking_for_mask = player_character.Masks.values().pick_random()
+	
+	
+	
 	set_cone_color(looking_for_mask)
 	
 	if waypoints.is_empty():
@@ -104,19 +108,21 @@ func _physics_process(_delta: float) -> void:
 
 
 func set_cone_color(mask):
+	#print(mask)
 	light_cone.show()
 	
-	if mask == "none":
-		light_cone.hide()
-	elif mask == "white":
-		light_cone.get_node("PointLight2D").color = Color.WHITE
-	elif mask == "yellow":
+	#if mask == Player.Masks.:
+		#light_cone.hide()
+	#
+	#if mask == Player.Masks.WHITE:
+		#light_cone.get_node("PointLight2D").color = Color.WHITE
+	if mask == Player.Masks.YELLOW:
 		light_cone.get_node("PointLight2D").color = Color("ffa300")
-	elif mask == "green":
+	elif mask == Player.Masks.GREEN:
 		light_cone.get_node("PointLight2D").color = Color("00b543")
-	elif mask == "red":
+	elif mask == Player.Masks.RED:
 		light_cone.get_node("PointLight2D").color = Color("ff004d")
-	elif mask == "blue":
+	elif mask == Player.Masks.BLUE:
 		light_cone.get_node("PointLight2D").color = Color("065ab5")
 
 
@@ -235,9 +241,7 @@ func check_slide_collisions():
 		
 		if collider is Guard:
 			# still emits collisions
-			
-			print("guard colliisions")
-			
+						
 			var their_idx = collider.get_index()
 			var our_idx = get_index()
 			
@@ -262,7 +266,6 @@ func check_slide_collisions():
 			else:
 				assert(false, "error")
 			
-			print(wait)
 		else:
 			# no guard
 			collision_layer = 0b1
@@ -318,6 +321,10 @@ func play_walking_animation(cardinal_direction: int):
 			animated_sprite_2d.set_frame_and_progress(IDLE.RIGHT, 0)
 
 
+func set_new_mask_from_event(mask: Player.Masks):
+	set_cone_color(mask)
+	
+
 #func _on_player_character_player_sound(at: Vector2) -> void:
 	#var at_distance = (position - at).length()
 	#
@@ -346,6 +353,7 @@ func play_walking_animation(cardinal_direction: int):
 
 
 
+
 func _on_player_character_player_sound(at: Vector2) -> void:
 	pass
 	
@@ -365,3 +373,4 @@ func _on_player_character_player_sound(at: Vector2) -> void:
 	#
 	##assert(current_path != null)
 	##assert(len(current_path) > 0)
+	

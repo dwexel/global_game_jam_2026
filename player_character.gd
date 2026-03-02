@@ -1,4 +1,6 @@
 extends CharacterBody2D
+class_name Player
+
 
 # Movement speed in pixels per second.
 @export var speed := 50
@@ -7,24 +9,45 @@ extends CharacterBody2D
 var last_direction
 
 # cause something happened to alert them
+# wait are we using these at all?
+# not right now?
 signal player_sound(at: Vector2)
 signal alert_guards(at, radius, mask_color)
 
-# have the names of the animations in the sprite
-var masks = ["yellow", "white", "red", "green", "blue"]
+## have the names of the animations in the sprite
+#var masks = ["yellow", "white", "red", "green", "blue"]
 
 # for selection
-var current_mask = 4
+#var current_mask = 4
 
-@onready var animated_sprite = $AnimatedSprite2D
+enum Masks {YELLOW, RED, GREEN, BLUE}
+var mask = null
+
+
+#@onready var animated_sprite = $AnimatedSprite2D
+@onready var animation_player = $AnimationPlayer
+
+
 
 # direction of last successful player movement
 var last_movement = Vector2i(-1, 0)
 
 
+func _ready() -> void:
+	#animation_player = 0.1
+	#animation_player.get_animation("idle_down")
+	animation_player.speed_scale = 2.5
+	
+	set_mask_color(null)
+	
+	#setup color of us
+	#mask = Masks.BLUE
+	
+
 
 func _physics_process(delta):
-	# conversion is fine
+	
+	# conversion is fine. We're only dealing with keyboard input
 	var direction = Vector2i(
 		Input.get_axis("left", "right"),
 		Input.get_axis("up", "down")
@@ -50,37 +73,38 @@ func _physics_process(delta):
 	
 	move_and_slide()
 	check_slide_collisions()
+
+	# todo:
+	# make it so the animation position is carried over when switching enimations
 	
 	if velocity.length() > 0.1:
 		if direction.x == 1:
-			animated_sprite.play("walk_right")
+			animation_player.play("walk_right")
 			last_movement = direction
 		elif direction.x == -1:
-			animated_sprite.play("walk_left")
+			animation_player.play("walk_left")
 			last_movement = direction
 		elif direction.y == 1:
-			animated_sprite.play("walk_down")
+			animation_player.play("walk_down")
 			last_movement = direction
 		elif direction.y == -1:
-			animated_sprite.play("walk_up")
+			animation_player.play("walk_up")
 			last_movement = direction
 	else:
 		if last_movement.x == 1:
-			animated_sprite.play("idle_right")
+			animation_player.play("idle_right")
 		elif last_movement.x == -1:
-			animated_sprite.play("idle_left")
+			animation_player.play("idle_left")
 		elif last_movement.y == 1:
-			animated_sprite.play("idle_down")
+			animation_player.play("idle_down")
 		elif last_movement.y == -1:
-			animated_sprite.play("idle_up")
+			animation_player.play("idle_up")
 	
 	
 	
 	#if Input.is_action_just_pressed("dialogic_default_action"):
 		#current_mask = (current_mask + 1) % len(masks)
 		#animated_sprite.play(masks[current_mask])
-	
-	
 
 
 
@@ -121,7 +145,26 @@ func emit_door():
 	player_sound.emit(position)
 
 func get_mask_color():
-	return masks[current_mask]
+	return mask
+
+func set_mask_color(to):
+	mask = to
+	
+	if to == null:
+		
+	#if mask == Masks.NONE:
+		$Sprite2D.texture = preload("res://assets/playerWhite.png")
+
+	else:
+		if mask == Masks.YELLOW:
+			$Sprite2D.texture = preload("res://assets/playerYellow.png")
+		if mask == Masks.RED:
+			$Sprite2D.texture = preload("res://assets/playerRed.png")
+		if mask == Masks.GREEN:
+			$Sprite2D.texture = preload("res://assets/playerGreen.png")
+		if mask == Masks.BLUE:
+			$Sprite2D.texture = preload("res://assets/playerBlue.png")
+	
 
 
 
