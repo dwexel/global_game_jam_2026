@@ -6,7 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://cl5vw26omakp7" path="res://assets/guard3.png" id="4_kvivb"]
 [ext_resource type="Texture2D" uid="uid://c212b65mydeae" path="res://assets/guard4.png" id="5_525xt"]
 [ext_resource type="Texture2D" uid="uid://b0wxr0fsgfgo8" path="res://assets/questionAnim.png" id="6_gff0w"]
-[ext_resource type="Texture2D" uid="uid://bgqayjpfopuea" path="res://light_cone_texture_2.webp" id="6_yju2m"]
+[ext_resource type="Texture2D" uid="uid://jsxq8bfcr17g" path="res://assets/exclamationAnim.png" id="6_kvivb"]
+[ext_resource type="Texture2D" uid="uid://dib035t2pvhlh" path="res://assets/light_cone_texture_1.webp" id="6_yju2m"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lq6d1"]
 atlas = ExtResource("2_yju2m")
@@ -484,6 +485,10 @@ sprite_frames = SubResource("SpriteFrames_kvivb")
 animation = &"g4"
 frame = 12
 frame_progress = 0.9411013
+
+[node name="ExclamationAnim" type="Sprite2D" parent="." unique_id=499784096]
+position = Vector2(16, -4)
+texture = ExtResource("6_kvivb")
 
 [node name="OverheadAnimation" type="AnimatedSprite2D" parent="." unique_id=1236657516]
 visible = false

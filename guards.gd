@@ -44,13 +44,17 @@ var nomove = false
 
 @export var wait = 0.0
 
+var saw_player_last_frame = false
+
+var chasing = false
 
 
 func _ready() -> void:
+	player_character.alert_guards.connect(_on_player_character_player_sound)
+	
 	seed(randi())
+	
 	looking_for_mask = player_character.Masks.values().pick_random()
-	
-	
 	
 	set_cone_color(looking_for_mask)
 	
@@ -69,27 +73,56 @@ func _physics_process(_delta: float) -> void:
 	
 	play_walking_animation(facing_direction)
 	
+	var looking_at_point
+	
+	if saw_player_last_frame: 
+		looking_at_point = player_character.position
+	else:
+		looking_at_point = get_guard_destination()
+
+	light_cone.look_at(looking_at_point)
 	
 	
-	var guard_destination = get_guard_destination()
 	
-	#if wall_is_close(guard_destination):
-		#guard_destination = position + direction * 10
-	
-	light_cone.look_at(guard_destination)
-	
-	
-	if can_see_player(guard_destination) and player_character.get_mask_color() == looking_for_mask:
+	if can_see_player(looking_at_point) and player_character.get_mask_color() == looking_for_mask:
 		
+		if chasing:
+			# recomputing path every frame...
+			
+			current_path = null
+			_deck[-1].position = looking_at_point
+		
+		if !chasing:
+			wait = 1.0
+			chasing = true
+			
+			current_path = null
+			var _w = Waypoint.new()
+			_w.position = looking_at_point
+			_deck.push_back(_w)
+			_w.wait = 2.0
+			
+		
+		
+			#set_chasing_path()
+			
+			# when does it get tunred off?
+		
+		
+		
+		
+		saw_player_last_frame = true
 		
 		player_time += _delta
-		
-		# what the fuck
 		if overhead_animation.hidden:
 			overhead_animation.show()
-			overhead_animation.sprite_frames.set_animation_loop("question_mark", false)
-			overhead_animation.play("question_mark")
+			overhead_animation.set_frame_and_progress(player_time / player_timeout, 0.0)
+			#overhead_animation.sprite_frames.set_animation_loop("question_mark", false)
+			#overhead_animation.play("question_mark")
+	
 	else:
+		saw_player_last_frame = false
+		
 		player_time -= _delta
 		overhead_animation.hide()
 		overhead_animation.stop()
@@ -100,6 +133,11 @@ func _physics_process(_delta: float) -> void:
 	# set visual aspect
 	light_cone_actual.energy = lerpf(1, 4.5, (player_time/player_timeout))
 	
+	if chasing:
+		# show
+		$ExclamationAnim.show()
+	else:
+		$ExclamationAnim.hide()
 	
 	velocity = direction * SPEED
 	move_and_slide()
@@ -136,10 +174,30 @@ func select_guard():
 	animated_sprite_2d.play(random_ani_name)
 
 
-# deal with the path
-func pick_new_direction(delta) -> Vector2:
+# deal with the path here
+#
+func set_chasing_path():
+	current_path = null
+	var _w = Waypoint.new()
+	_w.position = player_character.position
+	_deck.push_back(_w)
 	
-	# temp
+	pass
+
+func try_find_chasing_path():
+	var looking_at_point = player_character.position
+
+	if can_see_player(looking_at_point) and player_character.get_mask_color() == looking_for_mask:
+		current_path = null
+		var _w = Waypoint.new()
+		_w = looking_at_point
+		_deck.push_back(_w)
+		
+		return true
+	
+	return false
+
+func pick_new_direction(delta) -> Vector2:
 	if nomove:
 		return Vector2.ZERO
 	
@@ -154,10 +212,20 @@ func pick_new_direction(delta) -> Vector2:
 		if waypoints.is_empty():
 			nomove = true
 			return Vector2.ZERO
-			
+		
 		_deck = waypoints.duplicate()
 	
 	if current_path == null:
+		
+		# not quite right
+		if chasing:
+			chasing = try_find_chasing_path()
+			
+			print(chasing)
+			
+			
+		
+		# 
 		var _dest = _deck[-1]
 		current_path = level.find_path(position, _dest.position)
 		current_path_i = 0
@@ -325,12 +393,14 @@ func set_new_mask_from_event(mask: Player.Masks):
 	set_cone_color(mask)
 	
 
-#func _on_player_character_player_sound(at: Vector2) -> void:
-	#var at_distance = (position - at).length()
-	#
-	#if at_distance >= 60:
-		#return
-	#
+func _on_player_character_player_sound(at: Vector2) -> void:
+	var at_distance = (position - at).length()
+	
+	print(at_distance)
+	
+	if at_distance >= 50:
+		return
+	
 	#var wait_time
 	#
 	#if at_distance < 60:
@@ -339,10 +409,15 @@ func set_new_mask_from_event(mask: Player.Masks):
 		#wait_time = 0.5
 #
 	#await get_tree().create_timer(wait_time).timeout
-	#
-	#var _w = Waypoint.new()
-	#_w.position = at
-	#waypoints.insert(waypoints_i, _w)
+	
+	var _w = Waypoint.new()
+	_w.position = at
+	_deck.push_back(_w)
+	
+	
+	current_path = null
+	current_path_i = 0
+	
 	#
 	#print(waypoints)
 	#current_path = level.find_path(position, at)
@@ -354,8 +429,8 @@ func set_new_mask_from_event(mask: Player.Masks):
 
 
 
-func _on_player_character_player_sound(at: Vector2) -> void:
-	pass
+#func _on_player_character_player_sound(at: Vector2) -> void:
+	#pass
 	
 	#var _w = Waypoint.new()
 	#_w.position = at

@@ -38,15 +38,25 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 		timer = null
 	
 
+const EVIDENVCE_GUI_SCENE = preload("res://evidence-paper.tscn")
+
+
 func _on_timeout():
 	print("DONE!")
+	
+	# HUHHHHHH
+	var main = $"/root/Main/PlayerCharacter"
+	main.add_child(EVIDENVCE_GUI_SCENE.instantiate())
 	
 	# our maps are superimposed
 	var map_coords = level.local_to_map(position)
 	level.do_pickup(map_coords)
 	
+	get_tree().paused = true
 	
 	player.set_mask_color(mask)
+	
+	player.alert_guards.emit(position)
 	
 	
 	
